@@ -30,6 +30,8 @@ export type Locale = (typeof locales)[number];
 /** Every string exists in both languages, so a missing translation is a type error. */
 export type L = Record<Locale, string>;
 
+export const tr = (value: string | L, lang: Locale) => (typeof value === "string" ? value : value[lang]);
+
 export type Photo = { kind: "photo"; src: StaticImageData; alt: L; caption?: L };
 export type Clip = { kind: "clip"; src: string; poster: string; alt: L; caption?: L };
 export type Media = Photo | Clip;
@@ -47,14 +49,16 @@ export const homeHref: Record<Locale, string> = { sv: "/", en: "/en" };
 export const contact = {
   email: "bajra.adrian@gmail.com",
   linkedin: "https://www.linkedin.com/in/adrianbajra/",
-  cv: "/AdrianBajra-CV.pdf",
+  /** Rendered from /cv and /en/cv by `npm run cv`. */
+  cv: { sv: "/AdrianBajra-CV-sv.pdf", en: "/AdrianBajra-CV-en.pdf" } satisfies L,
+  site: "adrianbajra.se",
 };
 
 export const meta = {
   title: { sv: "Adrian Bajra – Farkostteknik, KTH Formula Student", en: "Adrian Bajra – Vehicle Engineering, KTH Formula Student" },
   description: {
-    sv: "Adrian Bajra studerar farkostteknik på KTH och konstruerar suspension i KTH Formula Student. Driver Bajras Barbershop sedan 2021 och spelar fotboll i Sollentuna FK.",
-    en: "Adrian Bajra studies Vehicle Engineering at KTH and designs suspension parts for KTH Formula Student. Runs Bajras Barbershop since 2021 and plays football for Sollentuna FK.",
+    sv: "Adrian Bajra studerar farkostteknik på KTH och konstruerar suspension i KTH Formula Student. Driver Bajras Barbershop sedan 2021 och har spelat fotboll i Sollentuna FK.",
+    en: "Adrian Bajra studies Vehicle Engineering at KTH and designs suspension parts for KTH Formula Student. Runs Bajras Barbershop since 2021 and has played football for Sollentuna FK.",
   },
 } satisfies Record<string, L>;
 
@@ -65,6 +69,8 @@ export const nav: { id: string; label: L }[] = [
   { id: "projects", label: { sv: "Projekt", en: "Projects" } },
   { id: "barbershop", label: { sv: "Barbershop", en: "Barbershop" } },
   { id: "football", label: { sv: "Fotboll", en: "Football" } },
+  { id: "experience", label: { sv: "Erfarenhet", en: "Experience" } },
+  { id: "education", label: { sv: "Utbildning", en: "Education" } },
   { id: "contact", label: { sv: "Kontakt", en: "Contact" } },
 ];
 
@@ -74,15 +80,16 @@ export const ui = {
   skip: { sv: "Hoppa till innehållet", en: "Skip to content" },
   language: { sv: "Språk", en: "Language" },
   backToTop: { sv: "Till toppen", en: "Back to top" },
-  downloadCv: { sv: "Ladda ner CV (PDF)", en: "Download CV (PDF, Swedish)" },
+  downloadCv: { sv: "Ladda ner CV (PDF)", en: "Download CV (PDF)" },
 } satisfies Record<string, L>;
 
 export const hero = {
   lead: {
-    sv: "Jag studerar farkostteknik på KTH och konstruerar suspension i KTH Formula Student. Vid sidan av studierna driver jag Bajras Barbershop och spelar fotboll i Sollentuna FK.",
-    en: "I study Vehicle Engineering at KTH and design suspension parts for KTH Formula Student. Outside of class I run Bajras Barbershop and play football for Sollentuna FK.",
+    sv: "Jag studerar farkostteknik på KTH och konstruerar suspension i KTH Formula Student. Vid sidan av studierna driver jag Bajras Barbershop och har spelat fotboll i Sollentuna FK.",
+    en: "I study Vehicle Engineering at KTH and design suspension parts for KTH Formula Student. Outside of class I run Bajras Barbershop and have played football for Sollentuna FK.",
   },
   primary: { sv: "Se vad jag har byggt", en: "See what I've built" },
+  experience: { sv: "Erfarenhet och utbildning", en: "Experience and education" },
   secondary: { sv: "Kontakta mig", en: "Get in touch" },
   photo: {
     kind: "photo",
@@ -378,8 +385,8 @@ export const projects = {
       {
         kind: "photo",
         src: turboDownpipe,
-        alt: { sv: "Närbild på turbons avgashus med ett värmeskyddslindat rör.", en: "Close-up of the turbo's exhaust housing with a heat-wrapped pipe." },
-        caption: { sv: "Avgassidan på turbon.", en: "Exhaust side of the turbo." },
+        alt: { sv: "Närbild på avgasröret vid turbon.", en: "Close-up of the exhaust pipe at the turbo." },
+        caption: { sv: "Avgasröret hade gått av, så jag svetsade ett helt nytt avgassystem.", en: "The exhaust pipe had snapped, so I welded a complete new exhaust system." },
       },
       clip(
         "turbo",
@@ -394,14 +401,14 @@ export const projects = {
       {
         kind: "photo",
         src: rustedBolt,
-        alt: { sv: "Närbild på en kraftigt rostig bult under en bil.", en: "Close-up of a badly rusted bolt under a car." },
-        caption: { sv: "Fastrostad bult.", en: "A seized, rusted bolt." },
+        alt: { sv: "Närbild på en rostig bromsslangsanslutning under en bil.", en: "Close-up of a rusted brake hose fitting under a car." },
+        caption: { sv: "Reparation av bromsslang.", en: "Brake hose repair." },
       },
       {
         kind: "photo",
         src: newWheels,
         alt: { sv: "Svarta femekrade fälgar i plastsäckar i en bil.", en: "Black five-spoke wheels wrapped in plastic bags inside a car." },
-        caption: { sv: "Nya fälgar.", en: "New wheels." },
+        caption: { sv: "Nya fälgar. Däcken krängde jag om själv.", en: "New wheels. I remounted the tyres myself." },
       },
       {
         kind: "photo",
@@ -465,18 +472,18 @@ export const football = {
   club: "Sollentuna FK",
   body: [
     {
-      sv: "Jag spelar semiprofessionell fotboll i Sollentuna FK, vid sidan av KTH och Formula Student.",
-      en: "I play semi-professional football for Sollentuna FK, alongside KTH and Formula Student.",
+      sv: "Jag har spelat semiprofessionell fotboll i Sollentuna FK.",
+      en: "I've played semi-professional football for Sollentuna FK.",
     },
     {
-      sv: "Jag är också ideell tränare för Rotebro IS P08 och har varit ledare på klubbens Football Summer Camp. Som tränare har jag lärt mig att leda, samarbeta och hålla lugnet när en grupp ska prestera tillsammans.",
-      en: "I also coach Rotebro IS P08 as a volunteer and have been a leader at the club's Football Summer Camp. Coaching has taught me to lead, cooperate and stay calm when a group needs to perform together.",
+      sv: "Jag har också varit ideell tränare för Rotebro IS P08 och ledare på klubbens Football Summer Camp. Som tränare lärde jag mig att leda, samarbeta och hålla lugnet när en grupp ska prestera tillsammans.",
+      en: "I also coached Rotebro IS P08 as a volunteer and was a leader at the club's Football Summer Camp. Coaching taught me to lead, cooperate and stay calm when a group needs to perform together.",
     },
   ] satisfies L[],
   roles: [
-    { what: { sv: "Spelare", en: "Player" }, where: { sv: "Sollentuna FK", en: "Sollentuna FK" } },
-    { what: { sv: "Tränare, ideellt", en: "Volunteer coach" }, where: { sv: "Rotebro IS P08", en: "Rotebro IS P08" } },
-    { what: { sv: "Ledare", en: "Leader" }, where: { sv: "Football Summer Camp, Rotebro IS", en: "Football Summer Camp, Rotebro IS" } },
+    { what: { sv: "Tidigare spelare", en: "Former player" }, where: { sv: "Sollentuna FK", en: "Sollentuna FK" } },
+    { what: { sv: "Tidigare tränare, ideellt", en: "Former volunteer coach" }, where: { sv: "Rotebro IS P08", en: "Rotebro IS P08" } },
+    { what: { sv: "Tidigare ledare", en: "Former leader" }, where: { sv: "Football Summer Camp, Rotebro IS", en: "Football Summer Camp, Rotebro IS" } },
   ] satisfies { what: L; where: L }[],
 };
 
@@ -497,7 +504,7 @@ export const experience = {
   ] satisfies { org: string | L; role: L; when: L | null }[],
   education: [
     { org: "KTH", what: { sv: "Civilingenjör farkostteknik, masterinriktning vägfordon", en: "MSc Vehicle Engineering, Road Vehicles track" }, when: { sv: "2024–2029", en: "2024–2029" } },
-    { org: "Rudbecks gymnasium", what: { sv: "Naturvetenskapsprogrammet, plus Programmering 1, Matematik 5, Engelska 7 och Spanska 4", en: "Natural Science programme, plus Programming 1, Mathematics 5, English 7 and Spanish 4" }, when: null },
+    { org: "Rudbecks gymnasium", what: { sv: "Naturvetenskapsprogrammet, plus Programmering 1, Matematik 5, Engelska 7 och Spanska 4", en: "Natural Science programme, plus Programming 1, Mathematics 5, English 7 and Spanish 4" }, when: null },
     { org: "Edsbergsskolan", what: { sv: "Grundskola med matematikspecialisering", en: "Compulsory school, mathematics specialisation" }, when: null },
   ] satisfies { org: string; what: L; when: L | null }[],
   skills: [
@@ -506,7 +513,7 @@ export const experience = {
     { sv: "Mekanik och statik", en: "Mechanics and statics" },
     { sv: "Lastberäkningar och kraftanalys", en: "Load calculations and force analysis" },
     { sv: "Teknisk design", en: "Technical design" },
-    { sv: "Fräsning, svarvning och vattenskärning", en: "Milling, turning and waterjet cutting" },
+    { sv: "Fräsning, svarvning, vattenskärning och svetsning", en: "Milling, turning, waterjet cutting and welding" },
     { sv: "Projektledning och projektkommunikation", en: "Project management and communication" },
     { sv: "Bilreparation och trimning", en: "Car repair and tuning" },
   ] satisfies L[],

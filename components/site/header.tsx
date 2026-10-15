@@ -67,8 +67,8 @@ export function Header({ lang }: { lang: Locale }) {
           Adrian Bajra
         </a>
 
-        <nav aria-label={ui.menu[lang]} className="hidden lg:block">
-          <ul className="flex items-center gap-7 text-sm">
+        <nav aria-label={ui.menu[lang]} className="hidden xl:block">
+          <ul className="flex items-center gap-6 text-sm">
             {nav.map((item) => (
               <li key={item.id}>
                 <a href={`#${item.id}`} className="text-mist transition-colors hover:text-paper">
@@ -86,7 +86,7 @@ export function Header({ lang }: { lang: Locale }) {
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((value) => !value)}
-            className="flex h-10 items-center gap-2.5 rounded-[2px] px-2 text-sm font-semibold lg:hidden"
+            className="flex h-10 items-center gap-2.5 rounded-[2px] px-2 text-sm font-semibold xl:hidden"
           >
             <span aria-hidden className="relative block h-3 w-5">
               <span className={cn("absolute left-0 h-[2px] w-5 bg-paper transition-transform duration-300", open ? "top-[5px] rotate-45" : "top-0")} />
@@ -100,7 +100,7 @@ export function Header({ lang }: { lang: Locale }) {
       <div
         id="mobile-menu"
         hidden={!open}
-        className="h-[calc(100dvh-4rem)] overflow-y-auto border-t border-rule bg-navy px-4 pb-10 pt-6 md:px-8 lg:hidden"
+        className="h-[calc(100dvh-4rem)] overflow-y-auto border-t border-rule bg-navy px-4 pb-10 pt-6 md:px-8 xl:hidden"
       >
         <ul>
           {nav.map((item) => (

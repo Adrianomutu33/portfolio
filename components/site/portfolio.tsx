@@ -16,13 +16,11 @@ import {
   journey,
   nav,
   projects,
+  tr,
   ui,
-  type L,
   type Locale,
 } from "@/lib/content";
 import { cn } from "@/lib/utils";
-
-const tr = (value: string | L, lang: Locale) => (typeof value === "string" ? value : value[lang]);
 
 function Container({ className, children }: { className?: string; children: React.ReactNode }) {
   return <div className={cn("mx-auto w-full max-w-[1440px] px-4 md:px-8 xl:px-12", className)}>{children}</div>;
@@ -90,6 +88,12 @@ function Hero({ lang }: { lang: Locale }) {
                   className="rounded-[2px] bg-gold px-5 py-3 font-semibold text-navy transition-colors hover:bg-paper"
                 >
                   {hero.primary[lang]}
+                </a>
+                <a
+                  href="#experience"
+                  className="rounded-[2px] border border-paper/40 px-5 py-3 font-semibold transition-colors hover:border-gold hover:text-gold"
+                >
+                  {hero.experience[lang]}
                 </a>
                 <a href="#contact" className="font-semibold underline decoration-gold decoration-2 underline-offset-[6px] hover:text-gold">
                   {hero.secondary[lang]}
@@ -313,7 +317,7 @@ function Football({ lang }: { lang: Locale }) {
 
 function Experience({ lang }: { lang: Locale }) {
   return (
-    <section aria-labelledby="experience-heading" className="border-t border-rule py-24 md:py-36">
+    <section id="experience" aria-labelledby="experience-heading" className="border-t border-rule py-24 md:py-36">
       <Container>
         <Heading id="experience-heading">{experience.heading[lang]}</Heading>
         <div className="mt-12 grid gap-14 md:mt-16 lg:grid-cols-12 lg:gap-10">
@@ -331,7 +335,7 @@ function Experience({ lang }: { lang: Locale }) {
               ))}
             </ul>
           </div>
-          <div className="lg:col-span-3">
+          <div id="education" className="lg:col-span-3">
             <h3 className="text-[15px] text-mist">{experience.educationLabel[lang]}</h3>
             <ul className="mt-3">
               {experience.education.map((school) => (
@@ -353,7 +357,7 @@ function Experience({ lang }: { lang: Locale }) {
               ))}
             </ul>
             <a
-              href={contact.cv}
+              href={contact.cv[lang]}
               download
               className="mt-8 inline-block font-semibold underline decoration-gold decoration-2 underline-offset-[6px] hover:text-gold"
             >
@@ -382,7 +386,7 @@ function Contact({ lang }: { lang: Locale }) {
           <a href={contact.linkedin} target="_blank" rel="noreferrer" className="underline decoration-2 underline-offset-[6px] hover:decoration-navy/40">
             LinkedIn
           </a>
-          <a href={contact.cv} download className="underline decoration-2 underline-offset-[6px] hover:decoration-navy/40">
+          <a href={contact.cv[lang]} download className="underline decoration-2 underline-offset-[6px] hover:decoration-navy/40">
             {ui.downloadCv[lang]}
           </a>
         </div>
