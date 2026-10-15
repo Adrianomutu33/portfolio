@@ -1,0 +1,133 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@theme inline {
+  --font-sans: var(--font-archivo);
+  --font-heading: var(--font-archivo);
+
+  /* Formula KTH livery: the logo's navy and eagle gold */
+  --color-navy: #02183f;
+  --color-navy-deep: #010f2a;
+  --color-navy-raised: #0a2858;
+  --color-gold: #fbaf25;
+  --color-paper: #eef2f8;
+  --color-mist: #9aa8c2;
+  --color-rule: rgb(238 242 248 / 0.14);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+}
+
+:root {
+  --background: #02183f;
+  --foreground: #eef2f8;
+  --card: #0a2858;
+  --card-foreground: #eef2f8;
+  --popover: #0a2858;
+  --popover-foreground: #eef2f8;
+  --primary: #fbaf25;
+  --primary-foreground: #02183f;
+  --secondary: #0a2858;
+  --secondary-foreground: #eef2f8;
+  --muted: #0a2858;
+  --muted-foreground: #9aa8c2;
+  --accent: #0a2858;
+  --accent-foreground: #eef2f8;
+  --destructive: #ff6b5e;
+  --border: rgb(238 242 248 / 0.14);
+  --input: rgb(238 242 248 / 0.2);
+  --ring: #fbaf25;
+  --radius: 0.375rem;
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring;
+  }
+  html {
+    @apply font-sans;
+    scroll-padding-top: 4.5rem;
+  }
+  html,
+  body {
+    /* the timeline's sticky track is 100vw wide; clip keeps sticky working where hidden would not */
+    overflow-x: clip;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01";
+  }
+  ::selection {
+    @apply bg-gold text-navy;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-4;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@utility wide {
+  font-stretch: 125%;
+  font-variation-settings: "wdth" 125;
+}
+
+@utility semi-wide {
+  font-stretch: 112%;
+  font-variation-settings: "wdth" 112;
+}
+
+/* The 21st.dev timeline renders plain h2/h4; give them the livery type without forking its markup. */
+#journey h2,
+#journey h4 {
+  font-variation-settings: "wdth" 125;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-rise {
+    animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.1, 1) both;
+  }
+  .animate-draw {
+    transform-origin: left;
+    animation: draw 1.4s cubic-bezier(0.6, 0, 0.1, 1) 0.35s both;
+  }
+}
