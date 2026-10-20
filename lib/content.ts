@@ -15,6 +15,7 @@ import fschFlag from "@/assets/media/fsch-flag.jpg";
 import fschTeam from "@/assets/media/fsch-team.jpg";
 import fschTrophy from "@/assets/media/fsch-trophy.jpg";
 import haircutFade from "@/assets/media/haircut-fade.jpg";
+import hanifQuchTape from "@/assets/media/hanif-quch-tape.jpg";
 import kartTrailer from "@/assets/media/kart-trailer.jpg";
 import manifoldCracked from "@/assets/media/manifold-cracked.jpg";
 import manifoldRemoved from "@/assets/media/manifold-removed.jpg";
@@ -189,7 +190,7 @@ export const journey = {
       id: "fsch-2026",
       row: "top",
       date: { sv: "jul 2026", en: "Jul 2026" },
-      content: { sv: "FSCH i Schweiz. Klipper teamet i det sociala området och vinner Master of Sidequesting.", en: "FSCH in Switzerland. Cuts the team's hair in the social area and wins Master of Sidequesting." },
+      content: { sv: "FSCH: är med och tävlar som mekaniker samt vinner Master of Sidequesting vid sidan om.", en: "FSCH: competes as a mechanic and wins Master of Sidequesting on the side." },
       image: { src: barberFsch, alt: { sv: "Adrian klipper en lagkamrat på FSCH.", en: "Adrian cutting a teammate's hair at FSCH." } },
     },
   ] satisfies { id: string; row: "top" | "bottom"; date: L; content: L; image: { src: StaticImageData; alt: L } }[],
@@ -517,6 +518,30 @@ export const experience = {
     { sv: "Projektledning och projektkommunikation", en: "Project management and communication" },
     { sv: "Bilreparation och trimning", en: "Car repair and tuning" },
   ] satisfies L[],
+};
+
+export type Reference = { name: string; role: L; text?: L; linkedin: string; photo?: { src: StaticImageData; alt: L } };
+
+export const references: { heading: L; linkedin: L; people: Reference[] } = {
+  heading: { sv: "Referenser", en: "References" },
+  linkedin: { sv: "LinkedIn-profil", en: "LinkedIn profile" },
+  people: [
+    {
+      name: "Hanif Quch Tape",
+      role: { sv: "Min tidigare tränare", en: "My former coach" },
+      text: {
+        sv: "Vill du veta mer om mig, prata gärna med min gamla tränare. Jag tror att han är en av dem som känner till mina personliga styrkor och svagheter allra bäst.",
+        en: "Want to know more about me? Feel free to talk to my former coach. I think he is one of the people who knows my personal strengths and weaknesses best.",
+      },
+      linkedin: "https://www.linkedin.com/in/hanif-quch-tape/",
+      photo: { src: hanifQuchTape, alt: { sv: "Porträtt av Hanif Quch Tape.", en: "Portrait of Hanif Quch Tape." } },
+    },
+    {
+      name: "Armin Beiragh",
+      role: { sv: "Kollega i ett eget frilansuppdrag inom försäljning", en: "Colleague in our own freelance sales gig" },
+      linkedin: "https://www.linkedin.com/in/armin-beiragh/",
+    },
+  ],
 };
 
 export const contactSection = {

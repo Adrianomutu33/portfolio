@@ -16,6 +16,7 @@ import {
   journey,
   nav,
   projects,
+  references,
   tr,
   ui,
   type Locale,
@@ -370,6 +371,47 @@ function Experience({ lang }: { lang: Locale }) {
   );
 }
 
+function References({ lang }: { lang: Locale }) {
+  return (
+    <section id="references" aria-labelledby="references-heading" className="border-t border-rule py-24 md:py-36">
+      <Container>
+        <Heading id="references-heading">{references.heading[lang]}</Heading>
+        <ul className="mt-12 grid gap-12 md:mt-16 md:grid-cols-2 md:gap-10">
+          {references.people.map((person) => (
+            <li key={person.name} className="border-t border-rule pt-8">
+              <div className="flex items-center gap-5">
+                {person.photo && (
+                  <Image
+                    src={person.photo.src}
+                    alt={person.photo.alt[lang]}
+                    sizes="96px"
+                    placeholder="blur"
+                    className="size-20 shrink-0 rounded-[3px] object-cover md:size-24"
+                  />
+                )}
+                <div>
+                  <h3 className="wide text-[1.5rem] font-bold leading-tight tracking-[-0.02em] md:text-[1.875rem]">{person.name}</h3>
+                  <p className="mt-1 text-[15px] text-mist">{person.role[lang]}</p>
+                </div>
+              </div>
+              {person.text && <p className="mt-5 max-w-[52ch] text-lg leading-relaxed text-paper/85">{person.text[lang]}</p>}
+              <a
+                href={person.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`${person.name}, ${references.linkedin[lang]}`}
+                className="mt-5 inline-block font-semibold underline decoration-gold decoration-2 underline-offset-[6px] hover:text-gold"
+              >
+                {references.linkedin[lang]}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </section>
+  );
+}
+
 function Contact({ lang }: { lang: Locale }) {
   return (
     <section id="contact" aria-labelledby="contact-heading" className="bg-gold py-24 text-navy md:py-36">
@@ -463,6 +505,7 @@ export function Portfolio({ lang }: { lang: Locale }) {
         <Barbershop lang={lang} />
         <Football lang={lang} />
         <Experience lang={lang} />
+        <References lang={lang} />
         <Contact lang={lang} />
       </main>
       <Footer lang={lang} />
