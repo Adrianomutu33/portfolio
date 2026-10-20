@@ -50,8 +50,8 @@ export const homeHref: Record<Locale, string> = { sv: "/", en: "/en" };
 export const contact = {
   email: "bajra.adrian@gmail.com",
   linkedin: "https://www.linkedin.com/in/adrianbajra/",
-  /** Rendered from /cv and /en/cv by `npm run cv`. */
-  cv: { sv: "/AdrianBajra-CV-sv.pdf", en: "/AdrianBajra-CV-en.pdf" } satisfies L,
+  /** Adrian's own CV (Swedish), served to both languages. */
+  cv: "/AdrianBajra-CV.pdf",
   site: "adrianbajra.se",
 };
 
@@ -81,7 +81,7 @@ export const ui = {
   skip: { sv: "Hoppa till innehållet", en: "Skip to content" },
   language: { sv: "Språk", en: "Language" },
   backToTop: { sv: "Till toppen", en: "Back to top" },
-  downloadCv: { sv: "Ladda ner CV (PDF)", en: "Download CV (PDF)" },
+  downloadCv: { sv: "Ladda ner CV (PDF)", en: "Download CV (PDF, Swedish)" },
 } satisfies Record<string, L>;
 
 export const hero = {

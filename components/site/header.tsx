@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { homeHref, locales, nav, ui, type Locale } from "@/lib/content";
+import { contact, homeHref, locales, nav, ui, type Locale } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 export function LanguageSwitch({ lang, className }: { lang: Locale; className?: string }) {
@@ -81,6 +81,14 @@ export function Header({ lang }: { lang: Locale }) {
 
         <div className="flex items-center gap-3">
           <LanguageSwitch lang={lang} className="hidden sm:flex" />
+          <a
+            href={contact.cv}
+            download
+            aria-label={ui.downloadCv[lang]}
+            className="rounded-[2px] border border-gold px-3 py-1 text-sm font-semibold text-gold transition-colors hover:bg-gold hover:text-navy"
+          >
+            CV
+          </a>
           <button
             type="button"
             aria-expanded={open}

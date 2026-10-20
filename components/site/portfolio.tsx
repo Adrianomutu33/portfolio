@@ -358,7 +358,7 @@ function Experience({ lang }: { lang: Locale }) {
               ))}
             </ul>
             <a
-              href={contact.cv[lang]}
+              href={contact.cv}
               download
               className="mt-8 inline-block font-semibold underline decoration-gold decoration-2 underline-offset-[6px] hover:text-gold"
             >
@@ -428,7 +428,7 @@ function Contact({ lang }: { lang: Locale }) {
           <a href={contact.linkedin} target="_blank" rel="noreferrer" className="underline decoration-2 underline-offset-[6px] hover:decoration-navy/40">
             LinkedIn
           </a>
-          <a href={contact.cv[lang]} download className="underline decoration-2 underline-offset-[6px] hover:decoration-navy/40">
+          <a href={contact.cv} download className="underline decoration-2 underline-offset-[6px] hover:decoration-navy/40">
             {ui.downloadCv[lang]}
           </a>
         </div>
